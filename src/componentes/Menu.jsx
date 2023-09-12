@@ -1,12 +1,3 @@
-const Home = () => (
-    <div>
-        <h1>eShop</h1>
-    </div>
-);
-export default Home;
-
--- criar o menu.jsx
-
 import { NavLink, Outlet } from 'react-router-dom';
 
 const Menu = () => {
