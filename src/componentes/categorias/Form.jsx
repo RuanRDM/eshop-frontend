@@ -1,11 +1,33 @@
 import { useContext } from 'react'
-import Alerta from '../../comuns/Alerta';
+import Alerta from '../comuns/Alerta';
 import CategoriaContext from './CategoriaContext';
 
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()	
+
 function Form() {
-
+    
     const { objeto, handleChange, acaoCadastrar, alerta } = useContext(CategoriaContext);
-
+    
+    
     return (
         <div className="modal fade" id="modalEdicao" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog">
@@ -44,12 +66,12 @@ function Form() {
                                     onChange={handleChange}
                                     required
                                 />
-                            </div>
-                            <div className="valid-feedback">
-                              OK
-                            </div>
-                            <div class="invalid-feedback">
-                              Informe o nome
+                                <div className="valid-feedback">
+                                  OK.
+                                </div>
+                                <div class="invalid-feedback">
+                                  Informe o nome.
+                                </div>	
                             </div>	
                         </div>
                         <div className="modal-footer">
@@ -66,25 +88,6 @@ function Form() {
     )
 }
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict'
   
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-  
-          form.classList.add('was-validated')
-        }, false)
-      })
-  })()	  
   
 export default Form;

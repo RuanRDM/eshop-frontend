@@ -3,8 +3,9 @@ import CategoriaContext from './CategoriaContext';
 import {
     getCategoriasAPI, getCategoriaPorCodigoAPI,
     deleteCategoriaPorCodigoAPI, cadastraCategoriaAPI
-} from '../../../servicos/CategoriaServico';
+} from '../servicos/CategoriaServico';
 import Form from './Form';
+import Tabela from './Tabela';
 
 function Categoria() {
 
