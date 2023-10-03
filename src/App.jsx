@@ -6,24 +6,41 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import Menu from './componentes/Menu'
 import Home from './componentes/telas/Home'
 import Categoria from './componentes/categorias/Categoria'
+import Login from "./componentes/telas/login/login";
+import MenuPrivado from "./componentes/MenuPrivado";
+import MenuPublico from "./componentes/MenuPublico";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <Menu />,
+    path : "/",
+    element : <MenuPublico/>,
+    children : [
+      {
+        index : true,
+        element : <Home/>
+      },
+      {
+        path : "login",
+        element :  <Login/>
+      }              
+    ]
+  }
+  ,
+  {
+    path: "/privado",
+    element: <MenuPrivado />,
     children: [
       {
         index: true,
         element: <Home />,
       },
       {
-        path : "categorias",
-        element : <Categoria/>
-      }         
+        path: "categorias",
+        element: <Categoria />,
+      }
     ]
   }
-
-]);
+])
 
 function App() {
 

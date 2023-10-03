@@ -6,8 +6,11 @@ import {
 } from '../servicos/CategoriaServico';
 import Form from './Form';
 import Tabela from './Tabela';
+import WithAuth from '../../seguranca/WithAuth';
+import { useNavigate } from "react-router-dom";
 
 function Categoria() {
+    let navigate = useNavigate();
 
     const [alerta, setAlerta] = useState({ status: "", message: "" });
     const [listaObjetos, setListaObjetos] = useState([]);
@@ -29,26 +32,35 @@ function Categoria() {
     }
 
     const editarObjeto = async codigo => {
-        setObjeto(await getCategoriaPorCodigoAPI(codigo))
-        setEditar(true);
-        setAlerta({ status: "", message: "" });
+        try {
+            setEditar(true);
+            setAlerta({ status: "", message: "" });
+            setObjeto(await getCategoriaPorCodigoAPI(codigo));
+        } catch (err) {
+            window.location.reload();
+            navigate("/login", { replace: true });
+        }
     }
-
+	
     const acaoCadastrar = async e => {
         e.preventDefault();
         const metodo = editar ? "PUT" : "POST";
         try {
             let retornoAPI = await cadastraCategoriaAPI(objeto, metodo);
-            setAlerta({ status: retornoAPI.status, message: retornoAPI.message });
+            setAlerta({
+                status: retornoAPI.status,
+                message: retornoAPI.message
+            });
             setObjeto(retornoAPI.objeto);
             if (!editar) {
                 setEditar(true);
             }
         } catch (err) {
-            console.error(err.message);
+            window.location.reload();
+            navigate("/login", { replace: true });
         }
         recuperaCategorias();
-    }
+    }	
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -57,14 +69,29 @@ function Categoria() {
     }
 
     const recuperaCategorias = async () => {
-        setListaObjetos(await getCategoriasAPI());
+        try {
+            setCarregando(true);
+            setListaObjetos(await getCategoriasAPI());
+            setCarregando(false);
+        } catch (err) {
+            window.location.reload();
+            navigate("/login", { replace: true });
+        }
     }
-
+	
     const remover = async codigo => {
-        if (window.confirm('Deseja remover este objeto?')) {
-            let retornoAPI = await deleteCategoriaPorCodigoAPI(codigo);
-            setAlerta({ status: retornoAPI.status, message: retornoAPI.message })
-            recuperaCategorias();
+        if (window.confirm('Deseja remover este objeto')) {
+            try {
+                let retornoAPI = await deleteCategoriaPorCodigoAPI(codigo);
+                setAlerta({
+                    status: retornoAPI.status,
+                    message: retornoAPI.message
+                });
+                recuperaCategorias();
+            } catch (err) {
+                window.location.reload();
+                navigate("/login", { replace: true });
+            }
         }
     }
 
@@ -90,4 +117,4 @@ function Categoria() {
     );
 }
 
-export default Categoria;
+export default WithAuth(Categoria);
