@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import { canConstructResponseFromBodyStream } from "workbox-core/_private";
 import { gravaAutenticacao, getToken } from "../../../seguranca/Autenticacao";
 import Carregando from "../../comuns/Alerta";
 import Alerta from "../../comuns/Alerta";
