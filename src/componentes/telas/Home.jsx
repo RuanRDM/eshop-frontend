@@ -1,7 +1,7 @@
 const Home = () => (
     <div>
-        <h1>eShop</h1>
+        <h1>eShop - LPE</h1>
     </div>
-);
-export default Home;
+)
 
+export default Home;

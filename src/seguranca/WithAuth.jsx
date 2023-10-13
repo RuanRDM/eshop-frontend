@@ -1,16 +1,18 @@
-import {Navigate} from 'react-router-dom';
-import { getToken } from './Autenticacao';
+import { Navigate } from "react-router-dom";
+import { getToken } from "./Autenticacao";
 
 const WithAuth = (Component) => {
+
     const AuthRoute = () => {
-        const isAuth = getToken() ? true : false;
-        if(isAuth){
+        const isAuth  = getToken() ? true : false;
+        if (isAuth) {
             return <Component/>
-        }else{
+        } else {
             return <Navigate to="/login"/>;
         }
     }
-    return AuthRoute
+
+    return AuthRoute;
 }
 
 export default WithAuth;

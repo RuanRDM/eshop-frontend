@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { gravaAutenticacao, getToken } from "../../../seguranca/Autenticacao";
-import Carregando from "../../comuns/Alerta";
+import Carregando from "../../comuns/Carregando";
 import Alerta from "../../comuns/Alerta";
 import './signin.css';
 
@@ -14,9 +14,7 @@ function Login() {
     const [carregando, setCarregando] = useState(false);
 
     const acaoLogin = async e => {
-
         e.preventDefault();
-
         try {
             const body = {
                 email: email,
@@ -26,24 +24,23 @@ function Login() {
             await fetch(`${process.env.REACT_APP_ENDERECO_API}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body),
+                body: JSON.stringify(body)
             }).then(response => response.json())
                 .then(json => {
                     if (json.auth === false) {
                         setAlerta({ status: "error", message: json.message })
-                    }
-                    if (json.auth === true) {
+                    } else {
                         setAutenticado(true);
                         gravaAutenticacao(json);
                     }
-                });
+                })
         } catch (err) {
-            console.error(err.message);
-            setAlerta({ status: "error", message: err.message })
+            console.log(err);
+            setAlerta({ status: "error", message: err.message });
         } finally {
             setCarregando(false);
         }
-    };
+    }
 
     useEffect(() => {
         try {
@@ -52,9 +49,9 @@ function Login() {
                 setAutenticado(true);
             }
         } catch (err) {
-            setAlerta({ status: "error", message: err })
+            setAlerta({ status: "error", message: err });
         }
-    }, []);
+    })
 
     if (autenticado === true) {
         return <Navigate to="/privado" />
@@ -92,7 +89,6 @@ function Login() {
             </Carregando>
         </div>
     )
-
 }
 
 export default Login;
