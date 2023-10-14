@@ -7,7 +7,6 @@ const Home = () => {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '100vh', // Isso define a altura para ocupar 100% da altura da viewport
     };
   
     return (
