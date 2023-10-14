@@ -20,7 +20,7 @@ function Livro() {
     const [alerta, setAlerta] = useState({ status: "", message: "" });
     const [listaObjetos, setListaObjetos] = useState([]);
     const [editar, setEditar] = useState(false);
-    const [objeto, setObjeto] = useState({ codigo: "", nome: "" });
+    const [objeto, setObjeto] = useState({ codigo: "", titulo: "" });
     const [carregando, setCarregando] = useState(false);
     const [listaEditoras, setListaEditoras] = useState([]);
 
