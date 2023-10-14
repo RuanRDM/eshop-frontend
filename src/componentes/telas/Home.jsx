@@ -1,5 +1,5 @@
 import React from 'react';
-import eshopLogo from '../../images/logo.png';
+import eshopLogo from '../../images/estudo-de-caso-lpe.png';
 
 const Home = () => (
     <div>
