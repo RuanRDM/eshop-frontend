@@ -7,6 +7,7 @@ import Home from "./componentes/telas/Home";
 import Categoria from "./componentes/telas/categoria/Categoria";
 import Produto from "./componentes/telas/produto/Produto";
 import Editora from "./componentes/telas/editora/Editora";
+import Livro from "./componentes/telas/livro/Livro";
 import Login from "./componentes/telas/login/Login";
 import MenuPublico from "./componentes/telas/MenuPublico";
 import MenuPrivado from "./componentes/telas/MenuPrivado";
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path : "editoras",
         element :  <Editora/>
+      },
+      {
+        path : "livros",
+        element :  <Livro/>
       },
       {
         path : "login",
