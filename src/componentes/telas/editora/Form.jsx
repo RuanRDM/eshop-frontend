@@ -18,7 +18,7 @@ function Form() {
                 requerido={false} readonly={true}
                 maximocaracteres={5} />
             <CampoEntrada id="txtNome" label="Nome" tipo="text"
-                name="nome_editora" value={objeto.nome}
+                name="nome" value={objeto.nome}
                 handlechange={handleChange}
                 requerido={true} readonly={false}
                 textovalido="Nome OK" textoinvalido="Informe o nome"
