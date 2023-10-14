@@ -29,7 +29,8 @@ function Form() {
                 name="autor" value={objeto.autor}
                 handlechange={handleChange}
                 requerido={true} readonly={false}
-                textovalido="Autor OK" textoinvalido="Informe o Autor" />
+                textovalido="Autor OK" textoinvalido="Informe o Autor" 
+                maximocaracteres={40}/>
             <CampoEntrada id="txtPreco" label="Preço" tipo="number"
                 name="preco" value={objeto.preco}
                 handlechange={handleChange}
