@@ -28,7 +28,7 @@ function Tabela() {
                             <th scope="col">Autor</th>
                             <th scope="col">Preço</th>
                             <th scope="col">Descrição</th>
-                            <th scope="col">Categoria</th>
+                            <th scope="col">Editora</th>
                         </tr>
                     </thead>
                     <tbody>
