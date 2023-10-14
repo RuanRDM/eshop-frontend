@@ -6,6 +6,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css'
 import Home from "./componentes/telas/Home";
 import Categoria from "./componentes/telas/categoria/Categoria";
 import Produto from "./componentes/telas/produto/Produto";
+import Editora from "./componentes/telas/editora/Editora";
 import Login from "./componentes/telas/login/Login";
 import MenuPublico from "./componentes/telas/MenuPublico";
 import MenuPrivado from "./componentes/telas/MenuPrivado";
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path : "produtos",
         element :  <Produto/>
+      },
+      {
+        path : "editoras",
+        element :  <Editora/>
       },
       {
         path : "login",
