@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import LivroContext from "./LivroContext";
-import { getCategoriaServico }
-    from '../../../servicos/CategoriaServico';
+import { getEditoraServico }
+    from '../../../servicos/EditoraServico';
 import {
     getLivroServico, getLivroServicoPorCodigoAPI,
     deleteLivroServico, cadastraLivroServico
@@ -22,20 +22,18 @@ function Livro() {
     const [editar, setEditar] = useState(false);
     const [objeto, setObjeto] = useState({ codigo: "", nome: "" });
     const [carregando, setCarregando] = useState(false);
-    const [listaCategorias, setListaCategorias] = useState([]);
+    const [listaEditoras, setListaEditoras] = useState([]);
 
     const novoObjeto = () => {
         setEditar(false);
         setAlerta({ status: "", message: "" });
         setObjeto({
             codigo: 0,
-            nome: "",
+            titulo: "",
+            autor: "",
+            preco: "",
             descricao: "",
-            quantidade_estoque: "",
-            valor: "",
-            ativo: "",
-            data_cadastro: new Date().toISOString().slice(0, 10),
-            categoria: ""
+            editora: ""
         });
     }
 
@@ -81,8 +79,8 @@ function Livro() {
         }
     }
 
-    const recuperaCategorias = async () => {
-        setListaCategorias(await getCategoriaServico());
+    const recuperaEditoras = async () => {
+        setListaEditoras(await getEditoraServico());
     }
 
     const remover = async codigo => {
@@ -109,14 +107,14 @@ function Livro() {
 
     useEffect(() => {
         recuperaLivros();
-        recuperaCategorias();
+        recuperaEditoras();
     }, []);
 
     return (
         <LivroContext.Provider value={{
             alerta, setAlerta, listaObjetos, remover,
             objeto, editar, acaoCadastrar,
-            handleChange, novoObjeto, editarObjeto, listaCategorias
+            handleChange, novoObjeto, editarObjeto, listaEditoras
         }}>
             <Carregando carregando={carregando}>
                 <Tabela />
